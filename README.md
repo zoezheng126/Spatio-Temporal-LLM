@@ -109,7 +109,7 @@ This package contains:
 - **Camera poses** for the egocentric action video  
   (32 uniformly sampled frames per clip)
 
-Instructions to placed the data: Coming Soon!
+Instructions to place the data: Coming Soon!
 </details>
 
 ---
