@@ -59,7 +59,11 @@ We recommend using Python 3.8 and CUDA 11.8.
 # (coming soon)
 pip install -r requirements.txt
 ```
+</details>
 
+<details>
+<summary><b>Quick inference</b></summary>
+  
 We provide a simple script to run inference on a sample REA QA example. Make sure the pretrained weights and sample data are properly downloaded.
 ```
 (coming soon, currently eval code)
