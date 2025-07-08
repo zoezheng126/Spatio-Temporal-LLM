@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧠 Spatio-Temporal LLM: Reasoning about Environments and Actions from Egocentric Videos and 3D Scenes**
+# 🧠 Spatio-Temporal LLM: Reasoning about Environments and Actions from Egocentric Videos and 3D Scenes
 
 [📄 Paper (arXiv)](https://arxiv.org/abs/2507.05258) | [🌐 Project Website](https://zoezheng126.github.io/STLLM-website/) | [📁 Data & Checkpoints (Google Drive)](https://drive.google.com/drive/folders/1qX9Pn50NFR_dNuz6eH3TnQPZDtwQu0W8?usp=drive_link)
 
