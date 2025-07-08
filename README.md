@@ -122,7 +122,7 @@ Instructions to place the data: Coming Soon!
 - **3D Point Cloud**: Encodes the global spatial layout  
 - **Text Instruction**: The QA prompt to be answered  
 
-We use a [**Q-Former-like cross-modal alignment module**](LLaVa-Next/llava/train/aligner.py) with [**3D positional encoding**](LLaVa-Next/llava/train/ray_encoder.py) to merge these modalities before feeding them into an LLM decoder.  
+We use a [**Q-Former-like cross-modal alignment module**](LLaVA-NeXT/llava/train/aligner.py) with [**3D positional encoding**](LLaVA-NeXT/llava/train/ray_encoder.py) to merge these modalities before feeding them into an LLM decoder.  
 
 ---
 
