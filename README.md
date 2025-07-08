@@ -172,7 +172,7 @@ python qwen2vl7binstruct_inference.py
 ## 🙏 Acknowledgments
 
 We thank the authors of **EPIC-KITCHENS**, **VISOR**, **EPIC-FIELDS**, and **COLMAP** for their foundational work.  
-This project also builds on frameworks like **LL3DA** and **VGGT**.  
+This project also builds on frameworks like **LLaVA-NeXT**, **LL3DA**, and **VGGT**.  
 We appreciate the compute support from the **Delta GPU cluster** and funding from the **National Science Foundation (NSF)**.
 
 ---
