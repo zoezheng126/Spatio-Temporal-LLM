@@ -40,9 +40,11 @@ We are actively improving this repository. Below is a summary of what is already
 
 - [ ] Write complete training and usage instructions
 - [ ] Upload inference code
+- [ ] Build Dataset Visualizer
 - [ ] Upload a small batch of example data
 - [ ] Refactor and clean up the repository
 - [ ] Reconstruct video-level point clouds with updated pipeline
+
 
 ---
 
