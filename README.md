@@ -98,7 +98,7 @@ For more details, refer to our [project page](https://zoezheng126.github.io/STLL
 Before using our data or running any code, please download the **EPIC-KITCHENS** dataset (RGB video frames).  
 We use the **downsampled version** of the videos for all processing.
 
-- Official website: [https://epic-kitchens.github.io/2020](https://epic-kitchens.github.io/2020)
+- Official website: [https://epic-kitchens.github.io/epic-fields/](https://epic-kitchens.github.io/epic-fields/)
 - Download the RGB frames (downsampled version) following their instructions.
 
 ### 📁 REA 3D Data
