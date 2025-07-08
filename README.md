@@ -169,6 +169,8 @@ python qwen2vl7binstruct_inference.py
 ```
 </details>
 
+---
+
 ## 🙏 Acknowledgments
 
 We thank the authors of **EPIC-KITCHENS**, **VISOR**, **EPIC-FIELDS**, and **COLMAP** for their foundational work.  
