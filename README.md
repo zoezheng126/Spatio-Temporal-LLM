@@ -51,18 +51,40 @@ We are actively improving this repository. Below is a summary of what is already
 ## ⚙️ Quick Start
 
 <details>
-<summary><b>Environment Setup</b></summary>
+<summary><b>🛠️ Environment Setup</b></summary>
 
-We recommend using Python 3.8 and CUDA 11.8.
+Before installing our environment, please make sure to install the dependencies required by the following repositories:
+
+- [OpenScene](https://github.com/pengsongyou/openscene)  
+- [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT/tree/main)  
+
+Please follow their instructions to set up the necessary libraries, as our code builds upon their dependency stacks.
+
+---
+
+We recommend using **Python 3.8** and **CUDA 11.8**.
+Our code is tested with the following package versions:
+
+- `torch==2.4.1`  
+- `accelerate==1.0.1`  
+- `transformers==4.40.0.dev0`  
+- `setuptools==69.5.1`  
+- `pydantic==1.10.8`  
+
+To install dependencies:
 
 ```bash
-# (coming soon)
-pip install -r requirements.txt
+pip install -r requirements.txt  # (to be provided)
+```
+After that, build the ```pointnet2```:
+```bash
+cd LLaVA-NeXT/llava/model/openscene/third_party/pointnet2
+python setup.py install
 ```
 </details>
 
 <details>
-<summary><b>Quick inference</b></summary>
+<summary><b>⚡ Quick inference</b></summary>
   
 We provide a simple script to run inference on a sample REA QA example. Make sure the pretrained weights and sample data are properly downloaded.
 ```
@@ -86,11 +108,11 @@ The **Reasoning about Environments and Actions (REA)** dataset contains five typ
 
 Each QA sample in the dataset consists of:
 
-- A short egocentric action video  
-- A 3D point cloud of the environment  
-- A Question-Answer pair
+- A short egocentric action video (sampled from **EPIC-KITCHENS**)
+- A 3D point cloud of the environment (REA 3D Data, see below)
+- A Question-Answer pair (under REA_dataset)
 
-For more details, refer to our [project page](https://zoezheng126.github.io/STLLM-website/) or see Section 3 of our [paper](https://arxiv.org/abs/2507.05258). **Note:** We also provide the corresponding reconstruction images used to generate the 3D point cloud. These images can be used for **2D-LLM-based inference**, and are available in the [Google Drive](https://drive.google.com/file/d/1-FkbCSd6XMYV6IXospfXnAqeh6yfX2st/view?usp=drive_link).
+For more details, refer to our [project page](https://zoezheng126.github.io/STLLM-website/) or see Section 3 of our [paper](https://arxiv.org/abs/2507.05258). **Note:** Currently, the point clouds are reconstructed **per scene**, rather than per video. This provides **more accurate geometry**, as the reconstructions are **manually verified and annotated by humans**. We also provide the corresponding reconstruction images used to generate the 3D point cloud. These images can be used for **2D-LLM-based inference**, and are available in the [Google Drive](https://drive.google.com/file/d/1-FkbCSd6XMYV6IXospfXnAqeh6yfX2st/view?usp=drive_link). 
 
 <details>
 <summary><b>Data Preparation</b></summary>
@@ -109,7 +131,7 @@ This package contains:
 - **Camera poses** for the egocentric action video  
   (32 uniformly sampled frames per clip)
 
-Instructions to place the data: Coming Soon!
+Instructions to place the data: To be provided.
 </details>
 
 ---
@@ -127,6 +149,7 @@ We use a [**Q-Former-like cross-modal alignment module**](LLaVA-NeXT/llava/train
 ---
 
 ## 📦 Training
+
 <details>
 <summary><b>Training </b></summary>
 
@@ -138,6 +161,7 @@ bash LLaVA-NeXT/scripts/video/train/stllm_rea_train.sh
 ---
 
 ## 🔍 Evaluation
+
 <details>
 <summary><b>Evaluation </b></summary>
 
