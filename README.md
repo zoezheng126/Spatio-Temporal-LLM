@@ -112,7 +112,7 @@ Each QA sample in the dataset consists of:
 - A 3D point cloud of the environment (REA 3D Data, see below)
 - A Question-Answer pair (under REA_dataset)
 
-For more details, refer to our [project page](https://zoezheng126.github.io/STLLM-website/) or see Section 3 of our [paper](https://arxiv.org/abs/2507.05258). **Note:** Currently, the point clouds are reconstructed **per scene**, rather than per video. This provides **more accurate geometry**, as the reconstructions are **manually verified and annotated by humans**. We also provide the corresponding reconstruction images used to generate the 3D point cloud. These images can be used for **2D-LLM-based inference**, and are available in the [Google Drive](https://drive.google.com/file/d/1-FkbCSd6XMYV6IXospfXnAqeh6yfX2st/view?usp=drive_link). 
+For more details, refer to our [project page](https://zoezheng126.github.io/STLLM-website/) or see Section 3 of our [paper](https://arxiv.org/abs/2507.05258). **Note:** Currently, the point clouds are reconstructed **per scene**, rather than per video. This provides **more accurate geometry**, as the reconstructions are **manually verified and annotated by humans**. We will also provide the corresponding reconstruction image names used to generate the 3D point cloud. These images can be used for **2D-LLM-based inference**, and are available in the [Google Drive](https://drive.google.com/file/d/1-FkbCSd6XMYV6IXospfXnAqeh6yfX2st/view?usp=drive_link). 
 
 <details>
 <summary><b>Data Preparation</b></summary>
