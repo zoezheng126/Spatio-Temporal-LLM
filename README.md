@@ -106,7 +106,7 @@ cd MinkowskiEngine
 python setup.py install --blas=openblas
 ```
 
-7. Install pointnet2 and accelerated giou from source:
+Step 7. Install [PointNet++](https://github.com/charlesq34/pointnet2) and accelerated giou from source:
 ```bash
 cd LLaVA-NeXT/llava/model/openscene/third_party/pointnet2
 python setup.py install
@@ -114,14 +114,14 @@ cd ../utils
 python cython_compile.py build_ext --inplace
 ```
 
-8. Install Python Dependencies
+Step 8. Install Python Dependencies
 
 ```bash
 cd $Main
 pip install -r requirements.txt
 ```
 
-9. Install Deformable DETR
+Step 9. Install [Deformable DETR](https://github.com/fundamentalvision/Deformable-DETR)
 ```bash
 git clone https://github.com/fundamentalvision/Deformable-DETR.git
 cd Deformable-DETR
@@ -129,7 +129,7 @@ cd ./models/ops
 sh ./make.sh
 cd $Main
 ```
-10. Install Semantic-SAM and Mask2Former
+Step 10. Install [Semantic-SAM](https://github.com/UX-Decoder/Semantic-SAM) and [Mask2Former](https://github.com/facebookresearch/Mask2Former)
 Please install Semantic-SAM follow their instructions on their repo.
 
 ```bash
@@ -140,7 +140,7 @@ cd Mask2Former/mask2former/modeling/pixel_decoder/ops
 sh make.sh
 ```
 
-11. Substitute ```modeling_utils.py``` in ```Transformers``` package.
+Step 11. Substitute ```modeling_utils.py``` in ```Transformers``` package.
 ```bash
 # Find the path to Tranformers
 tf_path=$(python -c "import transformers; import os; print(os.path.dirname(transformers.__file__))")
