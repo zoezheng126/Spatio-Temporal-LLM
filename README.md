@@ -53,34 +53,102 @@ We are actively improving this repository. Below is a summary of what is already
 <details>
 <summary><b>🛠️ Environment Setup</b></summary>
 
-Before installing our environment, please make sure to install the dependencies required by the following repositories:
+This guide walks through setting up the environment for training and inference with ST-LLM, including dependencies like [FlashAttention](https://github.com/Dao-AILab/flash-attention), [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT/tree/main), [MinkowskiEngine](https://github.com/NVIDIA/MinkowskiEngine), [Openscene](https://github.com/pengsongyou/openscene/tree/main), [PointNet++](https://github.com/charlesq34/pointnet2), [Mask2Former](https://github.com/facebookresearch/Mask2Former), [Semantic-SAM](https://github.com/UX-Decoder/Semantic-SAM), and [Deformable DETR](https://github.com/fundamentalvision/Deformable-DETR).
 
-- [OpenScene](https://github.com/pengsongyou/openscene)  
-- [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT/tree/main)  
+Step 1. Create Conda Environment
+```bash
+export Main=$(pwd)
+conda create -n stllm python=3.9
+conda activate stllm
+```
 
-Please follow their instructions to set up the necessary libraries, as our code builds upon their dependency stacks.
+Step 2. Install PyTorch (2.4.1) with CUDA (11.8)
 
----
+MinkowskiEngine requires CUDA version < 12.0.
+```bash
+conda install pytorch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 pytorch-cuda=11.8 -c pytorch -c nvidia
+```
 
-We recommend using **Python 3.8** and **CUDA 11.8**.
-Our code is tested with the following package versions:
+Step 3. Install Build Tools
+```bash
+pip install ninja setuptools==69.5.1 
+```
+✅ Ensure ninja is in your PATH. You can check this with:
+```bash
+which ninja
+```
 
-- `torch==2.4.1`  
-- `accelerate==1.0.1`  
-- `transformers==4.40.0.dev0`  
-- `setuptools==69.5.1`  
-- `pydantic==1.10.8`  
-
-To install dependencies:
+Step 4. Install FlashAttention (v2.5.7)
 
 ```bash
-pip install -r requirements.txt  # (to be provided)
+TMPDIR=/tmp \
+PIP_CACHE_DIR=/tmp/pip-cache \
+TORCH_EXTENSIONS_DIR=/tmp/torch-extensions \
+TRITON_CACHE_DIR=/tmp/triton-cache \
+MAX_JOBS=4 \
+pip install -v flash-attn==2.5.7 --no-build-isolation
 ```
-After that, build the ```pointnet2```:
+
+Step 5. Install [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT/tree/main)
+```bash
+cd LLaVA-NeXT
+pip install -e ".[train]"
+```
+
+Step 6. Install [OpenScene](https://github.com/pengsongyou/openscene) 
+```bash
+conda install conda-forge::openexr
+conda install openblas-devel -c anaconda # Please find a way to install openblas
+
+# Install MinkowskiEngine
+git clone https://github.com/NVIDIA/MinkowskiEngine.git
+cd MinkowskiEngine
+python setup.py install --blas=openblas
+```
+
+7. Install pointnet2 and accelerated giou from source:
 ```bash
 cd LLaVA-NeXT/llava/model/openscene/third_party/pointnet2
 python setup.py install
+cd ../utils
+python cython_compile.py build_ext --inplace
 ```
+
+8. Install Python Dependencies
+
+```bash
+cd $Main
+pip install -r requirements.txt
+```
+
+9. Install Deformable DETR
+```bash
+git clone https://github.com/fundamentalvision/Deformable-DETR.git
+cd Deformable-DETR
+cd ./models/ops
+sh ./make.sh
+cd $Main
+```
+10. Install Semantic-SAM and Mask2Former
+Please install Semantic-SAM follow their instructions on their repo.
+
+```bash
+# Install Mask2Former
+cd Semantic-SAM
+git clone https://github.com/facebookresearch/Mask2Former.git
+cd Mask2Former/mask2former/modeling/pixel_decoder/ops
+sh make.sh
+```
+
+11. Substitute ```modeling_utils.py``` in ```Transformers``` package.
+```bash
+# Find the path to Tranformers
+tf_path=$(python -c "import transformers; import os; print(os.path.dirname(transformers.__file__))")
+echo "$tf_path"
+cd $Main
+mv modeling_utils.py "$tf_path"
+```
+
 </details>
 
 <details>
@@ -202,7 +270,7 @@ python qwen2vl7binstruct_inference.py
 ## 🙏 Acknowledgments
 
 We thank the authors of **EPIC-KITCHENS**, **VISOR**, **EPIC-FIELDS**, and **COLMAP** for their foundational work.  
-This project also builds on frameworks like **LLaVA-NeXT**, **LL3DA**, and **VGGT**.  
+This project also builds on frameworks like [LL3DA](https://github.com/Open3DA/LL3DA/tree/main), [VGGT](https://github.com/facebookresearch/vggt), [FlashAttention](https://github.com/Dao-AILab/flash-attention), [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT/tree/main), [MinkowskiEngine](https://github.com/NVIDIA/MinkowskiEngine), [Openscene](https://github.com/pengsongyou/openscene/tree/main), [PointNet++](https://github.com/charlesq34/pointnet2), [Mask2Former](https://github.com/facebookresearch/Mask2Former), [Semantic-SAM](https://github.com/UX-Decoder/Semantic-SAM), and [Deformable DETR](https://github.com/fundamentalvision/Deformable-DETR).  
 We appreciate the compute support from the **Delta GPU cluster** and funding from the **National Science Foundation (NSF)**.
 
 ---
